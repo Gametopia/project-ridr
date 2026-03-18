@@ -38,3 +38,20 @@ if (modal) {
         }
     });
 }
+
+const btn = document.getElementById('showAllBtn');
+const preview = document.getElementById('cars-preview')
+const extended = document.getElementById('cars-extended');
+
+btn.addEventListener('click', function(e){
+    e.preventDefault
+    if (extended.style.display === 'none') {
+        preview.style.display = 'none';
+        extended.style.display = 'grid';
+        btn.textContent = 'Toon Minder'
+    } else {
+        preview.style.display = 'grid';
+        extended.style.display = 'none';
+        btn.textContent = 'Toon Alle'
+    }
+});
