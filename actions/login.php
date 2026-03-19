@@ -12,4 +12,9 @@ if (password_verify($_POST['password'], $user['password'])) {
     $_SESSION['email'] = $user['email'];
     $_SESSION['role']   = $user['role'];
     header('Location: /');
-}
+} else {
+        $_SESSION["message"] = "Onjuist E-mailadres of Wachtwoord";
+        $_SESSION["email"] = htmlspecialchars($email);
+        header("Location: /login-form");
+        exit();
+    }
