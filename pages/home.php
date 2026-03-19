@@ -103,7 +103,7 @@
         </div>
 
     <div class="show-more">
-        <button class="button-primary" id="showAllBtn">Toon alle</button>
+        <button class="button-primary" id="showAllBtn">Toon Alle</button>
     </div>
 </main>
 
