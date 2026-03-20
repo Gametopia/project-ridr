@@ -7,7 +7,6 @@
         $stmt = $conn->prepare("SELECT * FROM account WHERE id = :id");
         $stmt->execute([':id' => $userid]);
         $userdata = $stmt->fetch(PDO::FETCH_ASSOC);
-        var_dump($userdata);
         ?>
 
         <div class="account-container">
