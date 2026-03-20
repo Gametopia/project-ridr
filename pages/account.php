@@ -2,13 +2,23 @@
 <main>
     <?php if (isset($_SESSION["role"])) { ?>
 
-    <div class="w3-sidebar w3-border w3-light-grey">
-        <a href="#" class="w3-bar-item w3-button w3-hover-blue">Mijn Account</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-blue">Accountinformatie</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-blue">Reserveringen</a>
-        <a href="#" class="w3-bar-item w3-button w3-hover-blue">Uitloggen</a>
-    </div>
-        <div class="dashboard">
+        <div class="account-container">
+
+            <aside class="account-sidebar">
+                <ul>
+                    <li class="account-sidebar-item active"><a href="#">Mijn Account</a></li>
+                    <li class="account-sidebar-item"><a href="#">Accountinformatie</a></li>
+                    <li class="account-sidebar-item"><a href="#">Reserveringen</a></li>
+                    <li class="account-sidebar-item logout"><a href="#">Uitloggen</a></li>
+                </ul>
+            </aside>
+
+            <section class="dashboard">
+                <div class="account-info">
+                    <h1>Mijn Account</h1>
+                    <p>Welkom terug! Hier kun je jouw gegevens bekijken en beheren.</p>
+                </div>
+            </section>
 
         </div>
 
