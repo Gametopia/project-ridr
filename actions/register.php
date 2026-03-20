@@ -5,6 +5,8 @@ require "database/connection.php";
 $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
 $password = $_POST["password"];
 $confirm_password = $_POST["confirm-password"];
+$name = $_POST["name"];
+$surname = $_POST["surname"];
 
 if ($password === $confirm_password) {
     $check_account = $conn->prepare("SELECT * FROM account WHERE email = :email");
@@ -16,9 +18,11 @@ if ($password === $confirm_password) {
         $options = ['cost' => 14];
         $encrypted_password = password_hash($password, PASSWORD_DEFAULT, $options);
 
-        $create_account = $conn->prepare("INSERT INTO account (email, password) VALUES (:email, :password)");
+        $create_account = $conn->prepare("INSERT INTO account (email, password, name, surname) VALUES (:email, :password, :name, :surname)");
         $create_account->bindParam(":email", $email);
         $create_account->bindParam(":password", $encrypted_password);
+        $create_account->bindParam(":name", $name);
+        $create_account->bindParam(":surname", $surname);
         $create_account->execute();
 
         $_SESSION["success"] = "Registratie is gelukt, log nu in:";

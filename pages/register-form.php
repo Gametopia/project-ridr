@@ -9,6 +9,10 @@
             <?php
             session_destroy();
              endif; ?>
+        <label for="name">Voornaam</label>
+        <input type="text" name="name" id="name" placeholder="Voornaam" required>
+        <label for="surname">Achternaam</label>
+        <input type="text" name="surname" id="surname" placeholder="Achternaam" required>
         <label for="email">Uw e-mail</label>
         <input type="email" name="email" id="email" placeholder="johndoe@gmail.com" value="<?= isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : '' ?>" required autofocus>
         <label for="password">Uw wachtwoord</label>
