@@ -550,6 +550,11 @@ footer .footer-links .links ul a {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
+.dashboard p {
+    color: #90A3BF;
+    font-size: 16px;
+}
+
 /* Content styling */
 .account-info h1 {
     margin: 0 0 10px 0;
