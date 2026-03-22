@@ -11,8 +11,7 @@
         $userdata = $stmt->fetch(PDO::FETCH_ASSOC);
         ?>
 
-        <?php
-        $stmt = $conn->prepare("SELECT cars.* FROM reservations JOIN cars ON reservations.car = cars.id WHERE reservations.user = :userid");
+        <?php $stmt = $conn->prepare("SELECT cars.*, reservations.`order` AS order_id FROM reservations JOIN cars ON reservations.car = cars.id WHERE reservations.user = :userid");
         $stmt->execute([':userid' => $userid]);
         $reservedCars = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
@@ -82,32 +81,32 @@
                 <section class="dashboard">
                     <h1>Reserveringen</h1>
                     <p>Hier kun je jouw reserveringen bekijken en beheren.</p>
-                        <div class="cars">
-                            <?php foreach ($reservedCars as $car): ?>
-                                <div class="car-details">
-                                    <div class="car-brand">
-                                        <h3><?php echo $car['name'] ?></h3>
-                                        <div class="car-type">
-                                            <?php echo $car['category'] ?>
-                                        </div>
-                                    </div>
-                                    <img src="<?php echo $car['image'] ?>" alt="">
-                                    <div class="car-specification">
-                                        <span><img src="assets/images/icons/gas-station.svg" alt=""><?php echo $car['fuel'] ?>L</span>
-                                        <span><img src="assets/images/icons/car.svg" alt=""><?= $car['transmission'] === 'automatic' ? 'Automaat' : 'Schakel' ?></span>
-                                        <span><img src="assets/images/icons/profile-2user.svg" alt=""><?php echo $car['seats'] ?> Personen</span>
-                                    </div>
-                                    <div class="rent-details">
-                                        <span><span class="font-weight-bold">€<?php echo $car['price'] ?>,00</span> / dag</span>
-                                        <a href="/car-detail?id=<?php echo $car['id'] ?>" class="button-primary">Bekijk nu</a>
+                    <div class="cars">
+                        <?php foreach ($reservedCars as $car): ?>
+                            <div class="car-details">
+                                <div class="car-brand">
+                                    <h3><?php echo $car['name'] ?></h3>
+                                    <div class="car-type">
+                                        <?php echo $car['category'] ?>
                                     </div>
                                 </div>
-                    <?php endforeach; ?>
+                                <img src="<?php echo $car['image'] ?>" alt="">
+                                <div class="car-specification">
+                                    <span><img src="assets/images/icons/gas-station.svg" alt=""><?php echo $car['fuel'] ?>L</span>
+                                    <span><img src="assets/images/icons/car.svg" alt=""><?= $car['transmission'] === 'automatic' ? 'Automaat' : 'Schakel' ?></span>
+                                    <span><img src="assets/images/icons/profile-2user.svg" alt=""><?php echo $car['seats'] ?> Personen</span>
+                                </div>
+                                <div class="rent-details">
+                                    <span><span class="font-weight-bold">€<?php echo $car['price'] ?>,00</span> / dag</span>
+                                    <a href="/reservation?id=<?php echo $car['order_id'] ?>" class="button-primary">Bekijk Reservering</a>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </section>
-        <?php endif; ?>
+            <?php endif; ?>
 
-    <?php } else {
+        <?php } else {
         header("Location: /login-form");
         die();
     }; ?>
