@@ -13,10 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name']);
     $surname = trim($_POST['surname']);
     $email = trim($_POST['email']);
-
+    $phone = trim($_POST['phone']);
+    
     $stmt = $conn->prepare("
         UPDATE account 
-        SET name = :name, surname = :surname, email = :email 
+        SET name = :name, surname = :surname, email = :email, phone = :phone
         WHERE id = :id
     ");
 
@@ -24,9 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':name' => $name,
         ':surname' => $surname,
         ':email' => $email,
+        ':phone' => $phone,
         ':id' => $userid
     ]);
 
-    header("Location: /account?updated=1");
+    header("Location: /account");
     exit;
 }
