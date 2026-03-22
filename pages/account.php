@@ -1,8 +1,10 @@
 <?php require "includes/header.php" ?>
 <main>
     <?php if (isset($_SESSION["role"])) { ?>
-        <?php $editMode = isset($_GET['edit']);
-        $reservationMode = isset($_GET['reservations'])
+        <?php
+        $editMode = isset($_GET['edit']);
+        $reservationMode = isset($_GET['reservations']);
+        $reservationView = isset($_GET['reservation']);
         ?>
         <?php
         $userid = $_SESSION['id'];
@@ -11,10 +13,13 @@
         $userdata = $stmt->fetch(PDO::FETCH_ASSOC);
         ?>
 
-        <?php $stmt = $conn->prepare("SELECT cars.*, reservations.`order` AS order_id FROM reservations JOIN cars ON reservations.car = cars.id WHERE reservations.user = :userid");
+        <?php
+        $stmt = $conn->prepare("SELECT cars.*, reservations.`order` AS order_id FROM reservations JOIN cars ON reservations.car = cars.id WHERE reservations.user = :userid");
         $stmt->execute([':userid' => $userid]);
         $reservedCars = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
+
+
 
         <div class="account-container">
             <aside class="account-sidebar">
@@ -81,6 +86,10 @@
                 <section class="dashboard">
                     <h1>Reserveringen</h1>
                     <p>Hier kun je jouw reserveringen bekijken en beheren.</p>
+                    <?php if (empty($reservedCars)): ?>
+                        <p class="accent-color">Je hebt nog geen reserveringen.</p>
+                        <a href="/ons-aanbod" class="button-primary">Boek Nu</a>
+                    <?php endif; ?>
                     <div class="cars">
                         <?php foreach ($reservedCars as $car): ?>
                             <div class="car-details">
@@ -98,12 +107,49 @@
                                 </div>
                                 <div class="rent-details">
                                     <span><span class="font-weight-bold">€<?php echo $car['price'] ?>,00</span> / dag</span>
-                                    <a href="/reservation?id=<?php echo $car['order_id'] ?>" class="button-primary">Bekijk Reservering</a>
+                                    <a href="?reservation=<?php echo $car['order_id'] ?>" class="button-primary">Bekijk Reservering</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
                 </section>
+
+        <?php elseif ($reservationView): ?>
+                <?php 
+                $reservationNumber = $_GET['reservation'];
+                $stmt = $conn->prepare("SELECT cars.*, reservations.* FROM reservations JOIN cars ON reservations.car = cars.id WHERE reservations.order = :reservationnumber");
+                $stmt->execute([":reservationnumber" => $reservationNumber]);
+                $reservation = $stmt->fetch(PDO::FETCH_ASSOC);
+                ?>
+            <?php if (@$reservation['user'] === $userid): ?>
+                <section class="dashboard">
+                    <h1>Reservering #<?php echo $reservation['order'] ?></h1>
+                    <div class="cars">
+                        <div class="car-details">
+                            <div class="car-brand">
+                                <h3><?php echo $reservation['name'] ?></h3>
+                                <div class="car-type">
+                                    <?php echo $reservation['category'] ?>
+                                </div>
+                            </div>
+                            <img src="<?php echo $reservation['image'] ?>" alt="">
+                            <div class="car-specification">
+                                <span><img src="assets/images/icons/gas-station.svg" alt=""><?php echo $reservation['fuel'] ?>L</span>
+                                <span><img src="assets/images/icons/car.svg" alt=""><?= $reservation['transmission'] === 'automatic' ? 'Automaat' : 'Schakel' ?></span>
+                                <span><img src="assets/images/icons/profile-2user.svg" alt=""><?php echo $reservation['seats'] ?> Personen</span>
+                            </div>
+                            <div class="rent-details">
+                                <?php $pickup_date = strtotime($reservation['pickup_date'])  ?>
+                                <p>Ophaaldatum: <?php echo date("d-m-Y", $pickup_date) ?></p>
+                                <p>Ophaaltijd: <?php echo trim($reservation['pickup_time'], ":00") ?></p>
+                                <a href="" class="button-primary">Reservering Annuleren</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <?php else: ?>
+                    <h1>Geen reservering gevonden</h1>
+                <?php endif;?>
             <?php endif; ?>
 
         <?php } else {
