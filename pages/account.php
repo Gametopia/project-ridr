@@ -28,7 +28,7 @@
                                                     endif; ?>"><a href="/account">Mijn Account</a></li>
                     <li class="account-sidebar-item <?php if ($editMode): echo "active";
                                                     endif; ?>"><a href="/account?edit=1">Accountinformatie</a></li>
-                    <li class="account-sidebar-item <?php if ($reservationMode): echo 'active';
+                    <li class="account-sidebar-item <?php if (($reservationMode) || ($reservationView)): echo 'active';
                                                     endif; ?>"><a href="/account?reservations=1">Reserveringen</a></li>
                     <li class="account-sidebar-item logout"><a href="/logout">Uitloggen</a></li>
                 </ul>
