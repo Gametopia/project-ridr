@@ -5,6 +5,7 @@
         $editMode = isset($_GET['edit']);
         $reservationMode = isset($_GET['reservations']);
         $reservationView = isset($_GET['reservation']);
+        $cancelView = isset($_GET['cancel']);
         ?>
         <?php
         $userid = $_SESSION['id'];
@@ -114,42 +115,59 @@
                     </div>
                 </section>
 
-        <?php elseif ($reservationView): ?>
-                <?php 
+            <?php elseif ($reservationView): ?>
+                <?php
                 $reservationNumber = $_GET['reservation'];
                 $stmt = $conn->prepare("SELECT cars.*, reservations.* FROM reservations JOIN cars ON reservations.car = cars.id WHERE reservations.order = :reservationnumber");
                 $stmt->execute([":reservationnumber" => $reservationNumber]);
                 $reservation = $stmt->fetch(PDO::FETCH_ASSOC);
                 ?>
-            <?php if (@$reservation['user'] === $userid): ?>
-                <section class="dashboard">
-                    <h1>Reservering #<?php echo $reservation['order'] ?></h1>
-                    <div class="cars">
-                        <div class="car-details">
-                            <div class="car-brand">
-                                <h3><?php echo $reservation['name'] ?></h3>
-                                <div class="car-type">
-                                    <?php echo $reservation['category'] ?>
+                <?php if (@$reservation['user'] === $userid): ?>
+                    <section class="dashboard">
+                        <h1>Reservering #<?php echo $reservation['order'] ?></h1>
+                        <div class="cars">
+                            <div class="car-details">
+                                <div class="car-brand">
+                                    <h3><?php echo $reservation['name'] ?></h3>
+                                    <div class="car-type">
+                                        <?php echo $reservation['category'] ?>
+                                    </div>
+                                </div>
+                                <img src="<?php echo $reservation['image'] ?>" alt="">
+                                <div class="car-specification">
+                                    <span><img src="assets/images/icons/gas-station.svg" alt=""><?php echo $reservation['fuel'] ?>L</span>
+                                    <span><img src="assets/images/icons/car.svg" alt=""><?= $reservation['transmission'] === 'automatic' ? 'Automaat' : 'Schakel' ?></span>
+                                    <span><img src="assets/images/icons/profile-2user.svg" alt=""><?php echo $reservation['seats'] ?> Personen</span>
+                                </div>
+                                <div class="rent-details">
+                                    <?php $pickup_date = strtotime($reservation['pickup_date'])  ?>
+                                    <p>Ophaaldatum: <?php echo date("d-m-Y", $pickup_date) ?></p>
+                                    <p>Ophaaltijd: <?php echo trim($reservation['pickup_time'], ":00") ?></p>
+                                    <a href="?cancel=<?php echo $reservation['order'] ?>" class="button-primary">Reservering Annuleren</a>
                                 </div>
                             </div>
-                            <img src="<?php echo $reservation['image'] ?>" alt="">
-                            <div class="car-specification">
-                                <span><img src="assets/images/icons/gas-station.svg" alt=""><?php echo $reservation['fuel'] ?>L</span>
-                                <span><img src="assets/images/icons/car.svg" alt=""><?= $reservation['transmission'] === 'automatic' ? 'Automaat' : 'Schakel' ?></span>
-                                <span><img src="assets/images/icons/profile-2user.svg" alt=""><?php echo $reservation['seats'] ?> Personen</span>
-                            </div>
-                            <div class="rent-details">
-                                <?php $pickup_date = strtotime($reservation['pickup_date'])  ?>
-                                <p>Ophaaldatum: <?php echo date("d-m-Y", $pickup_date) ?></p>
-                                <p>Ophaaltijd: <?php echo trim($reservation['pickup_time'], ":00") ?></p>
-                                <a href="" class="button-primary">Reservering Annuleren</a>
-                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
                 <?php else: ?>
                     <h1>Geen reservering gevonden</h1>
-                <?php endif;?>
+                <?php endif; ?>
+
+            <?php elseif ($cancelView): ?>
+                <?php
+                $reservationNumber = $_GET['cancel'];
+                $stmt = $conn->prepare("SELECT cars.*, reservations.* FROM reservations JOIN cars ON reservations.car = cars.id WHERE reservations.order = :reservationnumber");
+                $stmt->execute([":reservationnumber" => $reservationNumber]);
+                $reservation = $stmt->fetch(PDO::FETCH_ASSOC);
+                ?>
+                <?php if (@$reservation['user'] === $userid): ?>
+                    <section class="dashboard">
+                        <h1>Reservering Annuleren</h1>
+                        <p>Weet je zeker dat je jouw reservering wilt annuleren?</p>
+                        <a href="" class="button-primary">Reservering Annuleren</a>
+                    </section>
+                <?php else: ?>
+                    <h1>Geen reservering gevonden</h1>
+                <?php endif; ?>
             <?php endif; ?>
 
         <?php } else {
