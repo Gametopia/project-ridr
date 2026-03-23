@@ -20,17 +20,30 @@
         $reservedCars = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_cancel'])) {
+            $reservationNumber = $_POST['reservation_id'];
+            $userid = $_SESSION['id'];
+            $stmt = $conn->prepare("DELETE FROM reservations WHERE `order` = :reservationnumber AND user = :userid");
+            $stmt->execute([':reservationnumber' => $reservationNumber, ':userid' => $userid]);
+            header("Location: /account?reservations=1&deleted=1");
+            exit;
+        }
+        ?>
 
 
         <div class="account-container">
             <aside class="account-sidebar">
                 <ul>
-                    <li class="account-sidebar-item <?php if (empty($_GET)): echo 'active';
-                                                    endif; ?>"><a href="/account">Mijn Account</a></li>
-                    <li class="account-sidebar-item <?php if ($editMode): echo "active";
-                                                    endif; ?>"><a href="/account?edit=1">Accountinformatie</a></li>
-                    <li class="account-sidebar-item <?php if (($reservationMode) || ($reservationView)): echo 'active';
-                                                    endif; ?>"><a href="/account?reservations=1">Reserveringen</a></li>
+                    <li class="account-sidebar-item <?php if (empty($_GET)):
+                        echo 'active';
+                    endif; ?>"><a href="/account">Mijn Account</a></li>
+                    <li class="account-sidebar-item <?php if ($editMode):
+                        echo "active";
+                    endif; ?>"><a href="/account?edit=1">Accountinformatie</a></li>
+                    <li class="account-sidebar-item <?php if (($reservationMode) || ($reservationView)):
+                        echo 'active';
+                    endif; ?>"><a href="/account?reservations=1">Reserveringen</a></li>
                     <li class="account-sidebar-item logout"><a href="/logout">Uitloggen</a></li>
                 </ul>
             </aside>
@@ -103,12 +116,15 @@
                                 <img src="<?php echo $car['image'] ?>" alt="">
                                 <div class="car-specification">
                                     <span><img src="assets/images/icons/gas-station.svg" alt=""><?php echo $car['fuel'] ?>L</span>
-                                    <span><img src="assets/images/icons/car.svg" alt=""><?= $car['transmission'] === 'automatic' ? 'Automaat' : 'Schakel' ?></span>
-                                    <span><img src="assets/images/icons/profile-2user.svg" alt=""><?php echo $car['seats'] ?> Personen</span>
+                                    <span><img src="assets/images/icons/car.svg"
+                                            alt=""><?= $car['transmission'] === 'automatic' ? 'Automaat' : 'Schakel' ?></span>
+                                    <span><img src="assets/images/icons/profile-2user.svg" alt=""><?php echo $car['seats'] ?>
+                                        Personen</span>
                                 </div>
                                 <div class="rent-details">
                                     <span><span class="font-weight-bold">€<?php echo $car['price'] ?>,00</span> / dag</span>
-                                    <a href="?reservation=<?php echo $car['order_id'] ?>" class="button-primary">Bekijk Reservering</a>
+                                    <a href="?reservation=<?php echo $car['order_id'] ?>" class="button-primary">Bekijk
+                                        Reservering</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -135,15 +151,19 @@
                                 </div>
                                 <img src="<?php echo $reservation['image'] ?>" alt="">
                                 <div class="car-specification">
-                                    <span><img src="assets/images/icons/gas-station.svg" alt=""><?php echo $reservation['fuel'] ?>L</span>
-                                    <span><img src="assets/images/icons/car.svg" alt=""><?= $reservation['transmission'] === 'automatic' ? 'Automaat' : 'Schakel' ?></span>
-                                    <span><img src="assets/images/icons/profile-2user.svg" alt=""><?php echo $reservation['seats'] ?> Personen</span>
+                                    <span><img src="assets/images/icons/gas-station.svg"
+                                            alt=""><?php echo $reservation['fuel'] ?>L</span>
+                                    <span><img src="assets/images/icons/car.svg"
+                                            alt=""><?= $reservation['transmission'] === 'automatic' ? 'Automaat' : 'Schakel' ?></span>
+                                    <span><img src="assets/images/icons/profile-2user.svg"
+                                            alt=""><?php echo $reservation['seats'] ?> Personen</span>
                                 </div>
                                 <div class="rent-details">
-                                    <?php $pickup_date = strtotime($reservation['pickup_date'])  ?>
+                                    <?php $pickup_date = strtotime($reservation['pickup_date']) ?>
                                     <p>Ophaaldatum: <?php echo date("d-m-Y", $pickup_date) ?></p>
                                     <p>Ophaaltijd: <?php echo trim($reservation['pickup_time'], ":00") ?></p>
-                                    <a href="?cancel=<?php echo $reservation['order'] ?>" class="button-primary">Reservering Annuleren</a>
+                                    <a href="?cancel=<?php echo $reservation['order'] ?>" class="button-primary">Reservering
+                                        Annuleren</a>
                                 </div>
                             </div>
                         </div>
@@ -159,11 +179,21 @@
                 $stmt->execute([":reservationnumber" => $reservationNumber]);
                 $reservation = $stmt->fetch(PDO::FETCH_ASSOC);
                 ?>
-                <?php if (@$reservation['user'] === $userid): ?>
+                <?php if ($reservation && $reservation['user'] == $userid): ?>
                     <section class="dashboard">
                         <h1>Reservering Annuleren</h1>
                         <p>Weet je zeker dat je jouw reservering wilt annuleren?</p>
-                        <a href="" class="button-primary">Reservering Annuleren</a>
+                        <form method="post">
+                            <input type="hidden" name="reservation_id" value="<?= $reservation['order'] ?>">
+
+                            <button type="submit" name="confirm_cancel" class="button-primary">
+                                Reservering Annuleren
+                            </button>
+
+                            <a href="/account?reservations=1" class="button-secondary">
+                                Annuleren
+                            </a>
+                        </form>
                     </section>
                 <?php else: ?>
                     <h1>Geen reservering gevonden</h1>
@@ -173,6 +203,7 @@
         <?php } else {
         header("Location: /login-form");
         die();
-    }; ?>
+    }
+    ; ?>
 </main>
 <?php require "includes/footer.php" ?>
