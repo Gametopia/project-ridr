@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 * {
   font-family: "Plus Jakarta Sans";
 }
@@ -12,6 +13,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
 .grid .row {
   flex: 1;
 }
@@ -101,6 +103,7 @@ main {
   gap: 1rem;
   margin-top: 1.5rem;
 }
+
 .modal-actions a {
   cursor: pointer;
 }
@@ -187,24 +190,31 @@ main {
   flex-direction: column;
   border-radius: 10px;
 }
+
 .advertorial h2 {
   color: white;
   max-width: 50%;
   /* The Best Platform for Car Rental */
   font-weight: 400;
-  line-height: 150%; /* or 48px */
-  letter-spacing: -0.03em; /* Primary/0 */
-  color: #FFFFFF; /* Inside auto layout */
+  line-height: 150%;
+  /* or 48px */
+  letter-spacing: -0.03em;
+  /* Primary/0 */
+  color: #FFFFFF;
+  /* Inside auto layout */
   margin: 0;
 }
+
 .advertorial p {
   color: white;
   max-width: 50%;
 }
+
 .advertorial img {
   max-width: 75%;
   margin: 0 auto;
 }
+
 .advertorial .background-header-element {
   position: absolute;
   z-index: 0;
@@ -215,22 +225,27 @@ footer {
   display: flex;
   padding: 2em 4em;
 }
+
 footer .brand {
   flex: 1;
 }
+
 footer .footer-links {
   flex: 1;
   display: flex;
   gap: 3em;
   justify-content: flex-end;
 }
+
 footer .footer-links .links {
   display: flex;
   flex-direction: column;
 }
+
 footer .footer-links .links h3 {
   font-weight: bold;
 }
+
 footer .footer-links .links ul {
   padding-left: 0;
   list-style: none;
@@ -238,6 +253,7 @@ footer .footer-links .links ul {
   flex-direction: column;
   gap: 1em;
 }
+
 footer .footer-links .links ul a {
   text-decoration: none;
   color: #90A3BF;
@@ -251,11 +267,13 @@ footer .footer-links .links ul a {
   background-color: white;
   border-top: 1px solid rgba(19, 19, 19, 0.16);
 }
+
 .legal-footer .legal-links ul {
   display: flex;
   gap: 1em;
   list-style: none;
 }
+
 .legal-footer .legal-links ul a {
   text-decoration: none;
   color: black;
@@ -273,12 +291,14 @@ footer .footer-links .links ul a {
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
+
 .topbar .logo {
   display: flex;
   align-items: center;
   gap: 1rem;
   flex: 1;
 }
+
 .topbar .logo a {
   display: inline-block;
   color: #3563e9;
@@ -288,21 +308,26 @@ footer .footer-links .links ul a {
   font-family: "Plus Jakarta Sans";
   font-style: normal;
   font-weight: 700;
-  line-height: 150%; /* or 48px */
+  line-height: 150%;
+  /* or 48px */
   align-items: center;
   letter-spacing: -0.03em;
 }
+
 .topbar .logo a img {
   width: 40px;
   height: auto;
 }
+
 .topbar form {
   position: relative;
   flex: 2;
   min-width: auto;
 }
+
 .topbar form input[type=search] {
-  padding: 10px 40px 10px 40px; /* ruimte voor icoon links */
+  padding: 10px 40px 10px 40px;
+  /* ruimte voor icoon links */
   width: 80%;
   border: 1px solid #C3D4E9;
   border-radius: 70px;
@@ -310,11 +335,13 @@ footer .footer-links .links ul a {
   min-width: 200px;
   transition: all 0.2s ease-in-out;
 }
+
 .topbar form input[type=search]:focus {
   outline: none;
   border-color: #3563e9;
   box-shadow: 0 0 0 2px rgba(53, 99, 233, 0.2);
 }
+
 .topbar form img {
   position: absolute;
   top: 50%;
@@ -324,22 +351,26 @@ footer .footer-links .links ul a {
   height: 20px;
   pointer-events: none;
 }
+
 .topbar nav ul {
   display: flex;
   gap: 1em;
   list-style: none;
   padding-left: 0;
 }
+
 .topbar nav ul a {
   text-decoration: none;
   color: #7ca6c3;
 }
+
 .topbar .menu {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
+
 .topbar .menu .account {
   color: white;
   border-radius: 999px;
@@ -348,12 +379,14 @@ footer .footer-links .links ul a {
   transition: background-color 0.2s;
   position: relative;
 }
+
 .topbar .menu .account img {
   cursor: pointer;
   border-radius: 999px;
   width: 40px;
   height: 40px;
 }
+
 .topbar .menu .account .account-dropdown {
   display: none;
   position: absolute;
@@ -366,18 +399,22 @@ footer .footer-links .links ul a {
   z-index: 10;
   min-width: 180px;
 }
+
 .topbar .menu .account .account-dropdown ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .topbar .menu .account .account-dropdown ul li {
   display: flex;
   align-items: center;
 }
+
 .topbar .menu .account .account-dropdown ul li img {
   max-height: 24px;
 }
+
 .topbar .menu .account .account-dropdown ul li a {
   display: block;
   padding: 0.75rem 1.25rem 0.75rem 0;
@@ -385,9 +422,11 @@ footer .footer-links .links ul a {
   color: #333;
   font-size: 14px;
 }
+
 .topbar .menu .account .account-dropdown ul li a:hover {
   background-color: #f5f5f5;
 }
+
 .topbar .menu .account.active .account-dropdown {
   display: block;
 }
@@ -395,18 +434,22 @@ footer .footer-links .links ul a {
 .car-detail .grid {
   gap: 50px;
 }
+
 .car-detail .grid .car-type .row {
   display: flex;
   justify-content: space-between;
 }
+
 .car-detail .call-to-action {
   display: flex;
   padding-top: 5em;
 }
+
 .car-detail .call-to-action .row {
   justify-content: left !important;
   align-items: center;
 }
+
 .car-detail .call-to-action .row:last-of-type {
   display: flex;
   justify-content: flex-end !important;
@@ -422,6 +465,7 @@ footer .footer-links .links ul a {
   grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
   gap: 20px;
 }
+
 .cars .car-details {
   display: flex;
   flex-direction: column;
@@ -429,25 +473,31 @@ footer .footer-links .links ul a {
   padding: 24px;
   gap: 24px;
 }
+
 .cars .car-details h3 {
   margin: 0;
 }
+
 .cars .car-details .car-type {
   color: #90A3BF;
 }
+
 .cars img {
   max-height: 87px;
 }
+
 .cars .car-specification {
   display: flex;
   justify-content: space-between;
 }
+
 .cars .car-specification span {
   display: flex;
   align-items: center;
   gap: 5px;
   color: #90A3BF;
 }
+
 .cars .rent-details {
   display: flex;
   align-items: center;
@@ -469,6 +519,7 @@ footer .footer-links .links ul a {
   flex-direction: column;
   max-width: 600px;
 }
+
 .account-form input {
   background-color: #F6F7F9;
   border: none;
@@ -476,102 +527,188 @@ footer .footer-links .links ul a {
   padding: 1em 2em;
   border-radius: 10px;
 }
+
 .account-form label {
   margin-bottom: 1em;
 }
 
 /* Container aligned with your main padding */
 .account-container {
-    max-width: 1200px;
-    margin: 2em auto;
-    display: flex;
-    gap: 20px;
+  max-width: 1200px;
+  margin: 2em auto;
+  display: flex;
+  gap: 20px;
 }
 
 /* Sidebar */
 .account-sidebar {
-    width: 260px;
-    background-color: white;
-    border-radius: 10px;
-    padding: 16px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-    height: fit-content;
+  width: 260px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  height: fit-content;
 }
 
 /* Sidebar list */
 .account-sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* Sidebar items */
 .account-sidebar-item {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .account-sidebar-item a {
-    display: block;
-    padding: 12px 14px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 14px;
-    color: #90A3BF;
-    transition: all 0.2s ease;
+  display: block;
+  padding: 12px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #90A3BF;
+  transition: all 0.2s ease;
+}
+
+.account-sidebar-item img {
+  height: 16px;
+  margin-right: 16px;
 }
 
 /* Hover (matches your UI subtle style) */
 .account-sidebar-item a:hover {
-    background-color: #F6F7F9;
-    color: #3563e9;
+  background-color: #F6F7F9;
+  color: #3563e9;
 }
 
 /* Active state (uses your primary color) */
 .account-sidebar-item.active a {
-    background-color: #3563e9;
-    color: white;
+  background-color: #3563e9;
+  color: white;
 }
 
 /* Logout styling */
 .account-sidebar-item.logout a {
-    color: #e74c3c;
+  color: #e74c3c;
 }
 
 .account-sidebar-item.logout a:hover {
-    background-color: rgba(231, 76, 60, 0.08);
+  background-color: rgba(231, 76, 60, 0.08);
 }
 
 /* Dashboard content */
 .dashboard {
-    flex: 1;
-    background-color: white;
-    border-radius: 10px;
-    padding: 24px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  flex: 1;
+  background-color: white;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
 .dashboard p {
-    color: #90A3BF;
-    font-size: 16px;
+  color: #90A3BF;
+  font-size: 16px;
 }
 
 /* Content styling */
 .account-info h1 {
-    margin: 0 0 10px 0;
-    font-size: 1.5em;
+  margin: 0 0 10px 0;
+  font-size: 1.5em;
 }
 
 .account-info p {
-    color: #90A3BF;
-    font-size: 14px;
+  color: #90A3BF;
+  font-size: 14px;
 }
 
 /* Optional: section blocks inside dashboard */
 .dashboard-card {
-    background-color: #F6F7F9;
-    border-radius: 10px;
-    padding: 16px;
-    margin-top: 20px;
+  background-color: #F6F7F9;
+  border-radius: 10px;
+  padding: 16px;
+  margin-top: 20px;
+}
+
+/* ===== ADMIN DASHBOARD LAYOUT ===== */
+
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* grid like the design */
+.admin-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+/* cards */
+.admin-card.large {
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* fake map */
+.admin-map {
+  height: 160px;
+  background-color: #F6F7F9;
+  border-radius: 10px;
+}
+
+/* car header */
+.admin-car {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-car img {
+  height: 60px;
+}
+
+/* pickup / dropoff */
+.admin-rental-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* total price */
+.admin-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+}
+
+/* chart placeholder */
+.admin-chart {
+  height: 220px;
+  background-color: #F6F7F9;
+  border-radius: 10px;
+}
+
+/* transactions */
+.admin-transactions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.admin-transaction {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-transaction img {
+  height: 40px;
 }
 
 /*# sourceMappingURL=main.css.map */

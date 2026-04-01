@@ -10,8 +10,8 @@ require_once 'database/connection.php';
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rydr</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="icon" type="image/png" href="assets/images/favicon.ico" sizes="32x32">
+    <link rel="stylesheet" href="/../assets/css/main.css">
+    <link rel="icon" type="image/png" href="/../assets/images/favicon.ico" sizes="32x32">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
@@ -26,7 +26,7 @@ require_once 'database/connection.php';
     </div>
     <form action="">
         <input type="search" name="" id="" placeholder="Welke auto wilt u huren?">
-        <img src="assets/images/icons/search-normal.svg" alt="" class="search-icon">
+        <img src="/../assets/images/icons/search-normal.svg" alt="" class="search-icon">
     </form>
     <nav>
         <ul>
@@ -38,12 +38,12 @@ require_once 'database/connection.php';
     <div class="menu">
         <?php if(isset($_SESSION['id'])){ ?>
         <div class="account">
-            <img src="assets/images/profil.png" alt="">
+            <img src="/../assets/images/profil.png" alt="">
             <div class="account-dropdown">
                 <ul>
-                    <?php if ($_SESSION['role'] === 'admin' ) echo ('<li style=""><img src="assets/images/icons/setting.svg" alt=""><a href="/admin">Admin</a></li>'); ?>
-                    <li><img src="assets/images/icons/setting.svg" alt=""><a href="/account">Naar account</a></li>
-                    <li><img src="assets/images/icons/logout.svg" alt=""><a href="/logout">Uitloggen</a></li>
+                    <?php if ($_SESSION['role'] === 'admin' ) echo ('<li style=""><img src="/../assets/images/icons/setting.svg" alt=""><a href="/admin">Admin</a></li>'); ?>
+                    <li><img src="/../assets/images/icons/setting.svg" alt=""><a href="/account">Naar account</a></li>
+                    <li><img src="/../assets/images/icons/logout.svg" alt=""><a href="/logout">Uitloggen</a></li>
                 </ul>
             </div>
         </div>

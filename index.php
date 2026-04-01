@@ -38,6 +38,11 @@ if ($path === 'register-handler') {
     exit;
 }
 
+if ($path === 'admin') {
+    require_once __DIR__ . '/pages/admin/admin.php';
+    exit;
+}
+
 $page = $path ?: 'home';
 $file = __DIR__ . '/pages/' . $page . '.php';
 
