@@ -22,6 +22,7 @@
 
 $requestUri = $_SERVER['REQUEST_URI'];
 $path = trim(parse_url($requestUri, PHP_URL_PATH), '/');
+session_start();
 
 if ($path === 'logout') {
     require_once __DIR__ . '/actions/logout.php';
@@ -39,8 +40,12 @@ if ($path === 'register-handler') {
 }
 
 if ($path === 'admin') {
-    require_once __DIR__ . '/pages/admin/admin.php';
-    exit;
+    if ($_SESSION['role'] === 'admin') {
+        require_once __DIR__ . '/pages/admin/admin.php';
+    } else {
+        header("Location: /account");
+        die();
+    }
 }
 
 $page = $path ?: 'home';
