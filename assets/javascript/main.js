@@ -40,7 +40,7 @@ if (modal) {
 }
 
 const btn = document.getElementById('showAllBtn');
-const preview = document.getElementById('cars-preview')
+const preview = document.getElementById('cars-preview');
 const extended = document.getElementById('cars-extended');
 
 btn.addEventListener('click', function(e){
@@ -52,6 +52,6 @@ btn.addEventListener('click', function(e){
     } else {
         preview.style.display = 'grid';
         extended.style.display = 'none';
-        btn.textContent = 'Toon Alle'
+        btn.textContent = 'Toon Alle';
     }
 });

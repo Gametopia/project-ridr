@@ -9,15 +9,15 @@
 
                 <section class="dashboard admin-dashboard">
                     <?php
-                    $stmt = $conn->prepare("SELECT `name`, `surname`, `email`, `adres`, `postal`, `phone`, `role`  FROM account");
-                    $stmt->execute();
-                    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        $stmt = $conn->prepare("SELECT `name`, `surname`, `email`, `adres`, `postal`, `phone`, `role`  FROM account");
+                        $stmt->execute();
+                        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     ?>
-                <div class="user-search">
-                    <h1>Gebruikers</h1>
-                    
+                    <div class="user-search">
+                        <h1>Gebruikers</h1>
+
                         <form action="">
-                            <input type="search" name="" id="" placeholder="Gebruiker Opzoeken">
+                            <input type="search" name="" id="searchInput" placeholder="Naam Opzoeken">
                             <img src="/../assets/images/icons/search-normal.svg" alt="" class="search-icon">
                         </form>
                     </div>
