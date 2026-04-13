@@ -7,7 +7,6 @@ $vehicleid = $_GET['id'];
 $stmt = $conn->prepare("SELECT * FROM cars WHERE id = :id");
 $stmt->execute([':id' => $vehicleid]);
 $car = $stmt->fetch(PDO::FETCH_ASSOC);
-var_dump($car);
 
 if ($carView) {
 ?>
@@ -17,14 +16,14 @@ if ($carView) {
         <div class="grid">
             <div class="row">
                 <div class="advertorial">
-                    <h2>Sport auto met het beste design en snelheid</h2>
+                    <h2>Altijd een auto die bij u past.</h2>
                     <p>Veiligheid en comfort terwijl je rijd in een futiristische en elante auto </p>
                     <img src="<?php echo $car['image'] ?>" alt="">
                     <img src="assets/images/header-circle-background.svg" alt="" class="background-header-element">
                 </div>
             </div>
             <div class="row white-background">
-                <h2><?php echo $car['name'] ?></h2>
+                <h2><?php echo $car['brand'] . ' ' . $car['name'] ?></h2>
                 <div class="rating">
                     <span class="stars stars-4"></span>
                     <span>440+ reviewers</span>

@@ -28,7 +28,7 @@
                                 <div>
                                     <?php $pickup_date = strtotime($reservation['pickup_date']) ?>
                                     <?php $dropoff_date = strtotime($reservation['dropoff_date']) ?>
-                                    <h3><?php echo $reservation['name'] ?></h3>
+                                    <h3><?php echo $reservation['brand'] . ' ' . $reservation['name']  ?></h3>
                                     <span class="accent-color"># <?php echo $reservation['order'] ?></span>
                                 </div>
                             </div>

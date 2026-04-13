@@ -36,7 +36,7 @@
         ?>
             <div class="car-details">
                 <div class="car-brand">
-                    <h3><?php echo $cars[$i]['name'] ?></h3>
+                    <h3><?php echo $cars[$i]['brand'] . ' ' . $cars[$i]['name'] ?></h3>
                     <div class="car-type">
                         <?php echo $cars[$i]['category'] ?>
                     </div>
@@ -60,7 +60,7 @@
         <?php for ($i = 0; $i < min(8, count($cars)); $i++): ?>
             <div class="car-details">
                 <div class="car-brand">
-                    <h3><?php echo $cars[$i]['name'] ?></h3>
+                    <h3><?php echo $cars[$i]['brand'] . ' ' . $cars[$i]['name'] ?></h3>
                     <div class="car-type">
                         <?php echo $cars[$i]['category'] ?>
                     </div>
@@ -83,7 +83,7 @@
             <?php for ($i = 0; $i < count($cars); $i++): ?>
                 <div class="car-details">
                     <div class="car-brand">
-                        <h3><?php echo $cars[$i]['name'] ?></h3>
+                        <h3><?php echo $cars[$i]['brand'] . ' ' . $cars[$i]['name'] ?></h3>
                         <div class="car-type">
                             <?php echo $cars[$i]['category'] ?>
                         </div>

@@ -1,6 +1,6 @@
 <?php require "includes/header.php" ?>
 <main>
-    <img src="/assets/images/banner.jpeg" alt="" width="1200">
+    <img src="/assets/images/banner.webp" alt="" width="1200">
     <h2>Over Rydr.</h2>
     <div class="grid">
         <div class="row">

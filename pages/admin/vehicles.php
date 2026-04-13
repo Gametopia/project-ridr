@@ -30,7 +30,7 @@
 
                             <div class="car-details">
                                 <div class="car-brand">
-                                    <h3><?php echo $car['name'] ?></h3>
+                                    <h3><?php echo $car['brand'] . ' ' . $car['name'] ?></h3>
                                     <div class="car-type">
                                         <?php echo $car['category'] ?>
                                     </div>

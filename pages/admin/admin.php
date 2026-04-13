@@ -35,7 +35,7 @@
                                         <div>
                                             <?php $pickup_date = strtotime($latest['pickup_date']) ?>
                                             <?php $dropoff_date = strtotime($latest['dropoff_date']) ?>
-                                            <h3><?php echo $latest['name'] ?></h3>
+                                            <h3><?php echo $latest['brand'] . ' ' . $latest['name'] ?></h3>
                                             <span class="accent-color"># <?php echo $latest['order'] ?></span>
                                         </div>
                                     </div>
@@ -83,7 +83,7 @@
                                     <div class="admin-transaction">
                                         <img src="assets/images/products/car (0).svg">
                                         <div>
-                                            <p><?php echo $reservations[$i]["name"] ?></p>
+                                            <p><?php echo $reservations[$i]['brand'] . ' ' . $reservations[$i]['name']  ?></p>
                                             <span class="accent-color">€ <?php echo $reservations[$i]["order_total"] ?></span>
                                         </div>
                                     </div>
