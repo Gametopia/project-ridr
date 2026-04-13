@@ -4,11 +4,11 @@
     <h2>Ons aanbod</h2>
 
     <?php
-    $cars = $conn->prepare("SELECT * FROM cars");
+    $cars = $conn->prepare("SELECT cars.*, brands.* FROM brands JOIN cars ON brands.brand_id = cars.brand_id");
     $cars->execute();
     $cars = $cars->fetchAll();
 
-    $getAllCarTypes = $conn->prepare("SELECT DISTINCT brand FROM cars");
+    $getAllCarTypes = $conn->prepare("SELECT * FROM brands ");
     $getAllCarTypes->execute();
 
     // $filteredCar = $conn->prepare("SELECT * FROM cars WHERE brand = :merk AND price <= :ppd AND category = :type AND transmission = :transmissie");
