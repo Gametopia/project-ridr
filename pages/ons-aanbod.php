@@ -37,8 +37,9 @@
 
                     <div class="filter-group">
                         <div class="filter-group-title">Merk</div>
+                        
                         <?php for ($i = 0; $i < $getAllCarTypes->rowCount(); $i++):
-                            $getName = $conn->query("SELECT DISTINCT brand FROM cars where id = $i")->fetchAll();
+                            $getName = $conn->query("SELECT DISTINCT brand FROM cars where brand_id = $i")->fetchAll();
                             $name = $getName[$i];
                             ?>
                             <div class="filter-option">
